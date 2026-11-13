@@ -1,0 +1,17 @@
+[
+  {
+    "city": "ИИград",
+    "path": "iigrad/bicycles.json",
+    "count": 300
+  },
+  {
+    "city": "Аналитиск",
+    "path": "analitisk/bicycles.json",
+    "count": 300
+  },
+  {
+    "city": "Даталесье",
+    "path": "datalesye/bicycles.json",
+    "count": 300
+  }
+]

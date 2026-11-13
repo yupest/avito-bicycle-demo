@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Данные об объявлениях велосети «Нейровектор»</title>
+<style>
+body{font:17px/1.6 system-ui,sans-serif;background:#f4f7f8;color:#183338;margin:0}main{max-width:860px;margin:40px auto;padding:32px;background:white;border-radius:20px}h1{line-height:1.2}code,pre{background:#eef3f4;border-radius:6px;padding:3px 7px}pre{padding:16px;overflow:auto;white-space:pre-wrap}button{background:#126759;color:white;border:0;border-radius:8px;padding:12px 20px;font:inherit;cursor:pointer}td,th{text-align:left;padding:9px;border-bottom:1px solid #dde5e7}table{border-collapse:collapse;width:100%}.note{color:#52676b}a{color:#126759}@media(max-width:600px){main{margin:12px;padding:18px}table{font-size:14px}}
+
+.intro-line{display:flex;align-items:center;gap:18px;margin-top:0}
+.intro-line img{display:block;width:150px;height:44px;object-fit:contain;flex-shrink:0}
+.intro-line span{min-width:0}
+@media(max-width:600px){.intro-line{gap:12px;font-size:14px}.intro-line img{width:110px;height:36px}}
+.site-footer{display:flex;align-items:center;justify-content:space-between;gap:20px;max-width:860px;margin:0 auto;padding:0 32px 32px;font-family:Manrope,system-ui,sans-serif;color:#7f7f7f;font-size:13px}
+.site-footer-brand{display:flex;align-items:center;flex-shrink:0;order:2}
+.site-footer-brand img{display:block;width:90px;height:auto}
+.site-footer p{margin:0;min-width:0}
+@media(max-width:600px){.site-footer{padding:12px 30px 24px}.site-footer{gap:12px}}
+</style></head><body>
+<main>
+<p class="note intro-line"><img src="https://ai-lesson.sk.ru/assets/l-project-b.svg" alt="Сколтех"><span>Учебный API · три города · по 300 объявлений</span></p>
+<h1>Данные об объявлениях велосети «Нейровектор»</h1>
+<h2>Легенда</h2>
+<p>В вымышленном мире «Альтернативное будущее» работает сеть веломагазинов с мастерскими «Нейровектор». Ее филиалы продают восстановленные велосипеды на Авито в трех городах: ИИграде, Аналитиске и Даталесье.</p>
+<p>ИИград – город повседневных велопоездок. Аналитиск – город семейных кварталов. Даталесье расположено у лесных хребтов и пересеченных маршрутов.</p>
+<p>Сеть планирует расширение. Руководителю нужно понять, в каком городе велосипеды продаются быстрее, какие категории стоит закупать и когда готовить запасы к сезону.</p>
+<p>Вы – команда аналитиков. Получите историю объявлений каждого филиала через учебный API, объедините записи в таблицу, проверьте качество данных и подготовьте рекомендации.</p>
+<p class="note">Учебное задание, сайт и данные подготовлены при поддержке Авито. Мир, города, сеть магазинов и объявления вымышлены. В набор включены объявления, опубликованные в 2023–2025 годах.</p>
+<h2>Получение данных</h2>
+<p>Метод: <code>GET</code>. Каждый адрес возвращает массив из 300 объектов.</p>
+<ul><li>ИИград: <a href="iigrad/bicycles.json">iigrad/bicycles.json</a></li>
+<li>Аналитиск: <a href="analitisk/bicycles.json">analitisk/bicycles.json</a></li>
+<li>Даталесье: <a href="datalesye/bicycles.json">datalesye/bicycles.json</a></li></ul>
+<p><a href="cities.json">cities.json</a> содержит названия городов, пути к файлам и количество записей.</p>
+<h2>Поля ответа</h2>
+<table><thead><tr><th>Поле</th><th>Значение</th></tr></thead><tbody>
+<tr><td>id</td><td>Уникальный номер объявления</td></tr>
+<tr><td>title</td><td>Заголовок</td></tr>
+<tr><td>category</td><td>Горные, Городские, Детские, Шоссейные</td></tr>
+<tr><td>brand, model</td><td>Марка и модель</td></tr>
+<tr><td>price_rub</td><td>Начальная цена объявления в рублях</td></tr>
+<tr><td>sale_price_rub</td><td>Цена продажи в рублях; null, если продажи не было</td></tr>
+<tr><td>frame_size</td><td>Размер рамы; детские размеры указаны отдельно</td></tr>
+<tr><td>wheel_diameter_inches</td><td>Диаметр колес в дюймах</td></tr>
+<tr><td>condition</td><td>Состояние: Отличное, Хорошее, Требует ремонта</td></tr>
+<tr><td>city</td><td>Город филиала</td></tr>
+<tr><td>status</td><td>sold – продано; archived – снято без продажи</td></tr>
+<tr><td>published_at</td><td>Дата публикации</td></tr>
+<tr><td>sold_at</td><td>Дата продажи; null, если продажи не было</td></tr>
+<tr><td>closed_at</td><td>Дата закрытия: продажа или снятие через 90 дней</td></tr>
+<tr><td>observed_at</td><td>Дата выгрузки: 2026-03-31. Включает результаты продаж объявлений конца 2025 года</td></tr>
+<tr><td>description</td><td>Описание велосипеда</td></tr>
+</tbody></table>
+<p>Даты имеют формат <code>YYYY-MM-DD</code>. Каждая запись относится к одному велосипеду. Объявления, которые не привели к продаже за 90 дней, филиал снимает с публикации.</p>
+<h2>Вопросы для анализа</h2>
+<ol><li>Где выше доля продаж за первые 30 дней после публикации?</li>
+<li>В каком городе дороже велосипеды одной категории и состояния?</li>
+<li>Какие категории лидируют по числу продаж? Какие – по доле проданных объявлений?</li>
+<li>В какие месяцы публикации выше доля продаж за 30 дней?</li>
+<li>Как состояние связано с долей продаж и временем до продажи?</li></ol>
+<p>Сравнивайте филиалы по одинаковым периодам. Время до продажи – разность sold_at и published_at. Доля продаж за 30 дней – число таких продаж, деленное на число опубликованных объявлений. Выборка каждого города равна 300 объявлениям.</p>
+<h2>Проверка источника</h2>
+<label for="dataset">Город:</label>
+<select id="dataset"><option value="iigrad/bicycles.json">ИИград</option><option value="analitisk/bicycles.json">Аналитиск</option><option value="datalesye/bicycles.json">Даталесье</option></select>
+<button id="check">Получить данные</button>
+<p id="status" role="status">Выберите город и получите данные после публикации сайта.</p>
+<pre id="preview" hidden></pre>
+</main>
+<footer class="site-footer">
+<div class="site-footer-brand"><img src="assets/avito-logo.png" alt="Авито"></div>
+<p>Урок ИИ | Учебный API велосети «Нейровектор»</p>
+</footer>
+<script>
+document.getElementById('check').addEventListener('click', async () => {
+  const status = document.getElementById('status');
+  const preview = document.getElementById('preview');
+  preview.hidden = true;
+  status.textContent = 'Получаем данные…';
+  try {
+    const path = document.getElementById('dataset').value;
+    const response = await fetch('./' + path);
+    if (!response.ok) throw new Error('HTTP ' + response.status);
+    const rows = await response.json();
+    if (!Array.isArray(rows) || rows.length !== 300) throw new Error('Ожидается массив из 300 записей');
+    status.textContent = 'Получено записей: ' + rows.length + '. Ниже – первая запись.';
+    preview.textContent = JSON.stringify(rows[0], null, 2);
+    preview.hidden = false;
+  } catch (error) {
+    status.textContent = 'Не удалось получить данные: ' + error.message;
+  }
+});
+</script></body></html>
